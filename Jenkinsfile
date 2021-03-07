@@ -8,7 +8,6 @@ pipeline {
         stage('Analise ao código .java') {
                      environment { scannerHome = tool 'sonarscanner' }
             steps {
-                def scannerHome = tool 'sonarqube';
                 withSonarQubeEnv ('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner \
                     -D sonar.host.url=http://sonar:9000/ \
