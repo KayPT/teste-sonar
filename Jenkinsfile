@@ -1,6 +1,7 @@
 pipeline {
     agent {
-        label any
+        label any 
+        }
 
     stages {
         stage('Analise ao código .java') {
@@ -19,4 +20,3 @@ pipeline {
             }
         }
     }
-}
