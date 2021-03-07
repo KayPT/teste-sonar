@@ -6,7 +6,7 @@ pipeline {
     stages {
 
         stage('Analise ao código .java') {
-                       environment { scannerHome = tool 'sonarqube' }
+                       environment { scannerHome = tool 'sonarscanner' }
                     steps {
                         withSonarQubeEnv('sonarqube') {
                         sh "${scannerHome}/bin/sonar-scanner \
