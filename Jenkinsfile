@@ -6,9 +6,10 @@ pipeline {
     stages {
 
         stage('Analise ao código .java') {
-                     environment { scannerHome = tool 'sonarscanner' }
             steps {
-                withSonarQubeEnv ('sonarqube') {
+                script {
+                    def scannerHome = tool 'sonarqube';
+                    withSonarQubeEnv ('sonarqube') {
                     sh """${scannerHome}/bin/sonar-scanner \
                     -D sonar.host.url=http://sonar:9000/ \
                     -D sonar.sources=src/main/java \
@@ -17,10 +18,8 @@ pipeline {
                     -D sonar.java.binaries=/home/jenkins/agent/workspace/calcsonar/ \
                     -D sonar.java.source=11 """
                     }
-                    timeout(time: 10, unit: 'MINUTES') {
-                        waitForQualityGate abortPipeline: true
+                }
+            }
         }
-    }
-}
     }
 }
